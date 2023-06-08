@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 
 module.exports = (sequelize) => { 
-    sequelize.define('Genre', { 
+    sequelize.define('genre', { 
 
         id: {
             type:DataTypes.UUID,
@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
             type:DataTypes.STRING,
             validate: { 
                 len: { 
-                    args:[1-30],
+                    args:[1,30],
                     msg:'El genero no es valido.'
                 }
             }

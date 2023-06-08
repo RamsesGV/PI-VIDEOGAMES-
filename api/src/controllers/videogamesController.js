@@ -9,13 +9,13 @@ const {
 
 //!/************************************************************************************************************ */
 const getVideoGamesApi = async() => { 
-    const response = (
+    const initialResponse = (
         await axios.get(`${API_URL}=${API_KEY}`)
         )
         let result = [];//1, 2 ---> next 3
         for (let i = 0; i < 5; i++) {
-        result = [...result, ...response.data.results];
-          response = await axios.get(response.data.next);//esto se repite 5 veces. // string url
+        result = [...result, ...initialResponse.data.results];
+          response = await axios.get(initialResponse.data.next);//esto se repite 5 veces. // string url
         }
     
         const data = result.map((el) => {
@@ -46,22 +46,32 @@ const getDbVideoGames = async() => {
         }
     })
     if(gamesOnDb.length === 0) { 
-        throw new Error('No se encontraron juegos en la base de datos.')
+    return[];
     }
     return gamesOnDb
 }
 
 //!/******************************************************************************************************************** */
 
-const getAllGames = async() =>  {
-    const gamesOnDb = await getDbVideoGames()
-    const gamesOnApi =  await getVideoGamesApi()
-    const allgames = [...gamesOnDb, ...gamesOnApi]
-    if(allgames.length === 0) { 
-        throw new Error('Algo ha salido mal!')
+const getAllGames = async () => {
+    const gamesOnDb = await getDbVideoGames();
+    const gamesOnApi = await getVideoGamesApi();
+    let allGames = [];
+
+    if (gamesOnDb.length === 0 && gamesOnApi.length > 0) {
+    allGames = gamesOnApi;
+    } else if (gamesOnDb.length > 0 && gamesOnApi.length > 0) {
+    allGames = [...gamesOnDb, ...gamesOnApi];
+    } else if (gamesOnDb.length > 0 && gamesOnApi.length === 0) {
+    allGames = gamesOnDb;
+    } else {
+    throw new Error('Algo ha salido mal!');
     }
-    return allgames
-}
+
+    return allGames;
+};
+
+
 
 //!/******************************************************************************************************************************** */
 
@@ -72,9 +82,9 @@ const getVideoGameByName = async (name) => {
     const dbGames = await getDbVideoGames()
     let allGames = [...apiGames.data.results, ...dbGames]
 
-    let nameOfGames = allGames.filter((element) => { 
-        element.name.toLowerCase().includes(name.toLowerCase())
-    })
+    let nameOfGames = allGames.filter((element) => {
+        return element.name.toLowerCase().includes(name.toLowerCase())
+})
     const data = nameOfGames.map((el) => { 
         return { 
             id:el.id,
@@ -138,38 +148,48 @@ if(isNaN(id)) {
 
 //!/**************************************************************************************** */
 
-const createGame = async (game) => { 
+const createGame = async (game) => {
     try {
-        const { genres } = game
-        const newGame = await Videogame.create(game)
-        genres.map(async el => {
-            let genreGameDb = await Genre.findOne({
-                where:{
-                    name:el,
-                }
-            })
-            await newGame.addGenre(genreGameDb)
-        })
-        if(!newGame) { 
-            throw new Error('Error, no se creo el juego!')
-        }
-        const gameCreated = await Videogame.findOne({
+    const { genres } = game;
+    
+    const newGame = await Videogame.create(game);
+
+    if (genres && Array.isArray(genres) && genres.length > 0) {
+        const genrePromises = genres.map(async (el) => {
+        let genreGameDb = await Genre.findOne({
             where: {
-                id:newGame.id
+            name: el,
             },
-            include:{
-                model:Genre,
-                attributes:[],
-                through:{
-                    attributes:[],
-                }
-            }
-        })
-        return gameCreated
+        });
+        await newGame.addGenre(genreGameDb);
+        });
+
+        await Promise.all(genrePromises);
+    }
+
+    if(!newGame) {
+        throw new Error('Error, no se creó el juego!');
+    }
+
+    const gameCreated = await Videogame.findOne({
+        where: {
+        id: newGame.id,
+        },
+        include: {
+        model: Genre,
+        attributes: [],
+        through: {
+            attributes: [],
+        },
+        },
+    });
+
+    return gameCreated;
     } catch (error) {
-            return {error:error.message}
-}
-}
+    console.log(error);
+    return { error: error.message };
+    }
+};
 
 //!/************************************************************************ */
 

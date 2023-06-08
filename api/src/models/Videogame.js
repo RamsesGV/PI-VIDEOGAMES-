@@ -3,7 +3,7 @@ const { DataTypes} = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Videogame', {
+  sequelize.define('videogame', {
     id: { 
       type:DataTypes.UUID,
       primaryKey: true,
@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: { 
         len:{
-          args:[1-20],
+          args:[1,20],
           msg:'El nombre del videojuego debe contener entre 1 a 20 caracteres'
         }
       }
