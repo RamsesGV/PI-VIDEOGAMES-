@@ -85,7 +85,10 @@ const getVideoGameByName = async (name) => {
     let nameOfGames = allGames.filter((element) => {
         return element.name.toLowerCase().includes(name.toLowerCase())
 })
-    const data = nameOfGames.map((el) => { 
+
+    const limitedGames = nameOfGames.slice(0,15)
+
+    const data = limitedGames.map((el) => { 
         return { 
             id:el.id,
             name: el.name,
