@@ -1,7 +1,7 @@
 const { response } = require('express')
 const { 
-    getVideoGamesApi,
-    getDbVideoGames,
+    //getVideoGamesApi,
+   // getDbVideoGames,
     getAllGames,
     getVideoGameByName,
     getVideoGameById,
@@ -75,6 +75,30 @@ const createGameHandler = async(req,res) => {
     }
 }
 
+const editGamehandler = async(req,res) => { 
+    try {
+        const edited = req.body
+        const { id } = req.params
+        const responseEdit = await editG(edited,id)
+        res.status(200).json(responseEdit)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+        
+    }
+    
+}
+
+const deletedGame = async(req,res) => { 
+    try {
+        const { id } = req.params
+        const deleted = await deleteGame(id)
+        res.status(200).json({message:  `El juego ${deleted}`})
+    } catch (error) {
+        res.status(400).json({error:error.message})
+        
+    }
+} 
+
 
 
 
@@ -82,5 +106,8 @@ module.exports = {
     getVideogamesHandler,
     getVideogameIdHandler,
     createGameHandler,
+    editGamehandler,
+    deletedGame,
+
     //getVideoGameNameHandler,
 }

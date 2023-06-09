@@ -177,7 +177,7 @@ const createGame = async (game) => {
         },
         include: {
         model: Genre,
-        attributes: [],
+        attributes: ['id','name'],
         through: {
             attributes: [],
         },
@@ -193,53 +193,63 @@ const createGame = async (game) => {
 
 //!/************************************************************************ */
 
-const editG = async (game,id) => { 
+const editG = async (game, id) => {
     try {
-        const { name, description, platforms, genres } = game;
-        const editedGame = await Videogame.upddate({
-            name:name,
-            description:description,
-            platforms:platforms,
+    const { name, description, platforms, genres } = game;
+
+    const editedGame = await Videogame.update(
+        {
+        name: name,
+        description: description,
+        platforms: platforms,
         },
         {
-            where:{
-                id:id
-            }
-        })
-        if(!editedGame) { 
-            throw new Error('no se encuentra el juego.')
+        where: {
+            id: id,
+        },
         }
+    );
 
-        const gameUpdated = await Videogame.findOne({
-            where: {
-                id:id
-            }
-        })
-        await genres.forEach(async (el) => { 
-            let genreFind = await Genre.findOne({
-                where:{
-                    name:el,
-                }
-            })
-        
-        const gameFind = await Videogame.findOne({
-            where: {
-                name:el
+    if (!editedGame[0]) {
+        throw new Error('No se encuentra el juego.');
+    }
+
+    const gameUpdated = await Videogame.findOne({
+        where: {
+        id: id,
+        },
+        include: [
+        {
+            model: Genre,
+            attributes: ['id', 'name'],
+            through: {
+            attributes: [],
             },
-            include:[Genre]
-        })
-        await gameFind.setGenres([])
-        await gameUpdated.addGenre(genreFind)
-    })
-    return{
-        message:'juego modificado',
-        result: gameUpdated
-    }
-    } catch (error) {
-        return {error:error.message}
-    }
-}
+        },
+        ],
+    });
 
+      // Buscar los géneros en la base de datos por su nombre
+    const foundGenres = await Genre.findAll({
+        where: {
+        name: genres,
+        },
+    });
+
+      // Limpiar los géneros actuales del juego
+    await gameUpdated.setGenres([]);
+
+      // Asignar los géneros encontrados al juego actualizado
+    await gameUpdated.addGenres(foundGenres);
+
+    return {
+        message: 'Juego modificado',
+        result: gameUpdated,
+    };
+    } catch (error) {
+    return { error: error.message };
+    }
+};
 //!/******************************************************************************* */
 
 const deleteGame = async (id) => {
@@ -254,7 +264,7 @@ const deleteGame = async (id) => {
     } else {
         await findGame.destroy()
     }
-    return (`juego ${findGame} fue eliminado con exito.`)
+    return (`${findGame.name} fue eliminado con exito.`)
 }
 
 module.exports = { 
