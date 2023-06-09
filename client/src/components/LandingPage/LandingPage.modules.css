@@ -1,0 +1,57 @@
+@font-face { 
+    font-family:'Fortnite';
+    src: url('./OPTIFutura-ExtraBlackCond.otf')
+}
+
+
+body {
+    background-image: url('https://get.wallhere.com/photo/video-games-Destiny-2-video-game-the-traveler-Earth-science-fiction-space-1788317.jpg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    animation: backgroundScroll 30s linear infinite;
+}
+
+@keyframes backgroundScroll {
+    0% {
+    background-position: 0 0;
+    }
+    50% {
+    background-position: 100% 0;
+    }
+    100% {
+    background-position: 0 0;
+    }
+}
+.titlecontainer {
+    font-family: 'Fortnite';
+    font-size: 25px;
+    width: auto;
+    color: white;
+    text-shadow: 0 0 10px blue, 0 0 20px blue, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue, 0 0 60px blue, 0 0 70px blue;
+    
+}
+
+.h2container{
+    font-family: 'Fortnite';
+    font-size: 25px;
+    color: white;
+    text-shadow: 0 0 10px blue, 0 0 20px blue, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue, 0 0 60px blue, 0 0 70px blue;
+    
+}
+
+.buttonhome {
+    color: white;
+    font-family: 'Fortnite';
+    border-radius: 100%;
+    margin-top: 100px;
+    background-color: blue;
+    text-decoration: none;
+    font-size: 24px; /* Ajusta el tamaño de fuente según tus preferencias */
+    padding: 10px 20px; /* Ajusta los valores de padding según tus preferencias */
+    border: none;
+    text-shadow: 0 0 10px rgb(226, 226, 236), 0 0 20px blue, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue, 0 0 60px blue, 0 0 70px blue;
+}
+
+.buttonhome:hover {
+    cursor: pointer;
+}
