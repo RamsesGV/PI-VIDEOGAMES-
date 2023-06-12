@@ -10,9 +10,13 @@ return(
         <div className='h2container'> 
                 <h2>You can search, create, view details of your favorite games, and more!</h2>
         </div>
-        <NavLink to='../Home/Home' >
+
+        <div className='buttonContainer'> 
+        <NavLink className='link' to='/Home' >
             <button className='buttonhome' >Go home</button>
         </NavLink>
+        </div>
+
     </div>
 )
 }

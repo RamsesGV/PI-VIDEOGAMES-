@@ -27,16 +27,20 @@ body {
     font-size: 25px;
     width: auto;
     color: white;
-    text-shadow: 0 0 10px blue, 0 0 20px blue, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue, 0 0 60px blue, 0 0 70px blue;
-    
+    text-shadow: 0 0 1px black, 0 0 2px black, 0 0 3px black, 0 0 4px white, 0 0 5px white, 0 0 6px white, 0 0 7px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .h2container{
     font-family: 'Fortnite';
     font-size: 25px;
     color: white;
-    text-shadow: 0 0 10px blue, 0 0 20px blue, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue, 0 0 60px blue, 0 0 70px blue;
-    
+    text-shadow: 0 0 1px black, 0 0 2px black, 0 0 3px black, 0 0 4px white, 0 0 5px white, 0 0 6px white, 0 0 7px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .buttonhome {
@@ -44,14 +48,34 @@ body {
     font-family: 'Fortnite';
     border-radius: 100%;
     margin-top: 100px;
-    background-color: blue;
+    background-color: rgb(167, 177, 177);
     text-decoration: none;
     font-size: 24px; /* Ajusta el tamaño de fuente según tus preferencias */
     padding: 10px 20px; /* Ajusta los valores de padding según tus preferencias */
     border: none;
-    text-shadow: 0 0 10px rgb(226, 226, 236), 0 0 20px blue, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue, 0 0 60px blue, 0 0 70px blue;
+    text-shadow: 0 0 1px black, 0 0 2px black, 0 0 3px black, 0 0 4px white, 0 0 5px white, 0 0 6px white, 0 0 7px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .buttonhome:hover {
     cursor: pointer;
+}
+
+.buttonContainer{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link { 
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    body {
+      background-image: url('https://imgur.com/i7noZ6O.jpg'); /* Fondo para pantallas más anchas */
+    }
 }
