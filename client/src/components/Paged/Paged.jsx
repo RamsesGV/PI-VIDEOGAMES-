@@ -12,7 +12,7 @@ export default function paged(props) {
         <nav>
             <ul>
             {pageNumbers && pageNumbers.map(n => (
-            <button key={n} className={btn} onClick={() => paged(n)}>{n}</button>
+            <button key={n} className='btn' onClick={() => paged(n)}>{n}</button>
         ))}
             </ul>
         </nav>

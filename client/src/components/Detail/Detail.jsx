@@ -29,7 +29,7 @@ const handleDelete = (event) => {
 
 return(
     <div>
-        {detailVideogame.createdinDb === true
+        {detailVideogame.createdInDb === true
         
         ? 
         <div> 
@@ -39,7 +39,7 @@ return(
             <h4>Rating: {detailVideogame?.rating}</h4>
             <h4>
                 description:
-                <p> dangerouslySetInnerHTML={{ __html: detailVideogame?.description }}</p>
+                <p dangerouslySetInnerHTML={{ __html: detailVideogame?.description }}></p>
             </h4>
             <h3>Platforms: {detailVideogame.platforms?.map(el => el).join(' - ')}</h3>
             <h3>Genres: {detailVideogame.genres?.map(el => el.name).join(' - ')}</h3>
