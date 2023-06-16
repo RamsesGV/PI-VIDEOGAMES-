@@ -4,24 +4,7 @@
 }
 
 
-body {
-    background-image: url('https://get.wallhere.com/photo/video-games-Destiny-2-video-game-the-traveler-Earth-science-fiction-space-1788317.jpg');
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    animation: backgroundScroll 30s linear infinite;
-}
 
-@keyframes backgroundScroll {
-    0% {
-    background-position: 0 0;
-    }
-    50% {
-    background-position: 100% 0;
-    }
-    100% {
-    background-position: 0 0;
-    }
-}
 .titlecontainer {
     font-family: 'Fortnite';
     font-size: 25px;

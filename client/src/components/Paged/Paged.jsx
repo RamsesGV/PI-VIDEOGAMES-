@@ -1,4 +1,4 @@
-export default function paged(props) { 
+export default function Paged(props) { 
     const { videoGamesPP, allVideoGames,paged} = props 
 
     let pageNumbers = []

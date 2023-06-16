@@ -133,15 +133,20 @@ const  rootReducer = (state = initialState, action) => {
             };
             //! hasta qui hice yo. lo terminaremos ramses! 
 
-                case FILTER_BY_GENRES:
+            case FILTER_BY_GENRES:
                 const allVideoGames = state.getAllVideoGames;
-                const filteredArr =
-                allVideoGames.filter(el => el.genres.includes(payload))
+                const filteredArr = allVideoGames.filter(el => el.genres.includes(payload));
+            
+                // Eliminar duplicados basados en el nombre
+                const uniqueGames = Array.from(new Set(filteredArr.map(el => el.name)))
+                .map(name => filteredArr.find(el => el.name === name));
+            
                 return {
                 ...state,
                 getAllVideoGames: state.getAllVideoGames,
-                videogames: filteredArr
+                videogames: uniqueGames,
                 };
+            
 
 
             case GET_VIDEOGAMES_BY_ORIGIN:
