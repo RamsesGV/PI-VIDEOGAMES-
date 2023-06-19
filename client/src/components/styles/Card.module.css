@@ -1,0 +1,86 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    margin: 30px;
+    background: rgba(238, 161, 224, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(248, 237, 173, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 99%; /* Cambia el border-radius a 50% para hacer las tarjetas circulares */
+    font-family: 'My Font Name';
+    color: white;
+    text-shadow: 2px 2px 3px black;
+    position: relative; /* Agrega la propiedad position: relative; */
+}
+
+.card::before {
+    position: absolute;
+    content: "";
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(124deg,#082567, #008000, #FF7F50, #FFD700, #FF00FF, #9400D3, #082567, #008000, #FF7F50);
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    animation: move 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 99%; /* Cambia el border-radius a 50% para hacer las tarjetas circulares */
+}
+
+.card:hover::before {
+    opacity: 1;
+    border-radius: 50%; /* Cambia el border-radius a 50% para hacer las tarjetas circulares */
+    box-shadow: 0 0 20px red; /* Agrega una sombra roja al pasar el cursor por encima */
+}
+
+.card::after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 99%; /* Cambia el border-radius a 50% para hacer las tarjetas circulares */
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+
+.image {
+    width: 30%; /* Elimina las comillas alrededor del valor del ancho */
+    margin: 20px; /* Elimina las comillas alrededor del valor del margen */
+}
+
+.cardImage {
+    height: 500px;
+    width: 420px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: 10px;
+    border-radius: 50%; /* Agrega un border-radius de 50% para hacer la imagen circular */
+}
+
+.h3 {
+    text-decoration: none;
+    color: #eeede8; /* Elimina la coma al final del valor del color */
+}

@@ -1,0 +1,73 @@
+@font-face { 
+    font-family:'Fortnite';
+    src: url('../../assets/OPTIFutura-ExtraBlackCond.otf')
+}
+
+.containerDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 130%;
+    border-radius: 40px;
+    background: rgba(3, 3, 25, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8.5px);
+    -webkit-backdrop-filter: blur(8.5px);
+    border-radius: 20px;
+    border: none;
+    margin: 5%;
+}
+
+img {
+    height: 400px;
+    width: 400px;
+    margin: 10px;
+    border-radius: 99%;
+}
+
+.backgroundImage h1 {
+    
+        font-family: 'Fortnite';
+        color: white;
+        text-shadow: 5px 5px 10px rgb(255, 255, 255);
+        background: linear-gradient(124deg, #f50808, #e00a0a);
+      border-radius: 99%;
+      
+}
+
+.containerDetails h3 {
+    font-family: 'Fortnite';
+    color: white;
+    margin: 10px
+}
+
+.containerDetails h4 {
+    font-family: 'Fortnite';
+    color: white;
+    margin: 10px;
+}
+
+.containerDetails p {
+    margin: 10px;
+    color: white;
+    text-shadow: rgb(247, 0, 0);
+    font-size: large;
+}
+.deleteGame{
+    font-family: 'Fortnite', Courier, monospace;
+    font-size: 20px;
+    border-radius: 7px;
+    background-color: rgba(0, 173, 253, 0.336);
+    border: solid white;
+    border-style: ridge white;
+    cursor: pointer;
+    
+}
+
+.deleteGame:hover{
+    background-color: rgba(12, 110, 175, 0.562);
+    color:white;
+}
+

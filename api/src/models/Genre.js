@@ -1,24 +1,24 @@
-const { DataTypes } = require('sequelize')
+const { DataTypes, STRING } = require('sequelize')
+// Exportamos una funcion que define el modelo
+// Luego le injectamos la conexion a sequelize.
+module.exports = (sequelize) => {
+  // defino el modelo
+sequelize.define(
+    'genre',
+    {
+    id: {
+        type: DataTypes.UUID,
+        defaultValue : DataTypes.UUIDV4,
+        allowNull: false,
+        primaryKey: true,
 
-module.exports = (sequelize) => { 
-    sequelize.define('genre', { 
-
-        id: {
-            type:DataTypes.UUID,
-            primaryKey:true,
-            defaultValue:DataTypes.UUIDV4,
-            allowNull:false
-        },
-
-        name: { 
-            type:DataTypes.STRING,
-            validate: { 
-                len: { 
-                    args:[1,30],
-                    msg:'El genero no es valido.'
-                }
-            }
-        }
-
-    },{timestamps:false, freezeTableName:true})
+    },
+    name: {
+        type: DataTypes.STRING,
+    },
+    },
+    {
+    timestamps: false,
+    },
+)
 }
