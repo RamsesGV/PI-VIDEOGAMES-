@@ -12,6 +12,7 @@ import {
     GET_VIDEOGAMES_BY_NAME,
     DELETED_GAME,
     DELETE_STATES,
+   // MODIFY_GAME
 } from '../actions/types.js';
 
 const initialState = {
@@ -21,6 +22,10 @@ const initialState = {
     genres: [], // este estado se llama ni bien se ejecuta la app
     details: [],
 };
+
+//const generateNewId = () => {
+   // return Date.now().toString();
+//};
 
 function rootReducer(state = initialState, action) {
     const {
@@ -51,6 +56,39 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
             };
+
+          //  case MODIFY_GAME: {
+              //  const { id, data } = action.payload;
+       //   
+                // Verificar si el ID existe para determinar si es una actualización o creación
+              //  if (id) {
+                  // Actualización del videojuego existente
+                //  const updatedVideoGames = state.videogames.map((game) =>
+                 //   game.id === id ? { ...game, ...data } : game
+                //  );
+                //  return {
+                  //  ...state,
+                 //   videoGames: updatedVideoGames,
+                //  };
+               // } else {
+                  // Creación de un nuevo videojuego
+               //   const newVideoGame = {
+                  //  id: generateNewId(), // Generar un nuevo ID (puedes utilizar una función adecuada para generar IDs únicos)
+                //    ...data,
+                //  };
+                //  return {
+                 //   ...state,
+                  //  videoGames: [...state.videogames, newVideoGame],
+                 // };
+               // }
+              
+            
+            //};
+          
+        
+
+
+
         case GET_GENRES:
             return {
                 ...state,

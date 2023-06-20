@@ -18,3 +18,19 @@ router.use('/genres', genresRouter)
 router.use('/videogames', gamesApi)
 
 module.exports = router;
+
+
+/*
+Se importa el módulo Router del paquete express para poder configurar las rutas.
+Se importan los routers adicionales, 
+en este caso genresRouter y gamesApi, 
+que se definen en archivos separados en las rutas correspondientes.
+Se crea una instancia del enrutador utilizando Router().
+Luego se configuran los routers utilizando el método use() del enrutador. 
+Se asigna un prefijo de ruta a cada router. 
+En este caso, 
+el router genresRouter se configura con el prefijo '/genres' 
+y el router gamesApi se configura con el prefijo '/videogames'.
+Finalmente, 
+se exporta el enrutador para que pueda ser utilizado en otros archivos.
+ */

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import styles from './styles/Details.module.css'
+//import { Link } from 'react-router-dom'
 
 //Actions
 import { getDetailVideoGame, deleteVideoGame } from '../actions/index.js';
@@ -51,8 +52,8 @@ const Details = (props) => {
                     <h3>
                         Genres: {detailVideoGame.genres?.map(el => el.name).join(' - ')}
                     </h3>
-                    {/* <Link to={`/editVideoGame/${detailVideoGame.id}`}>
-                        <button>Modify...</button>
+                   {/*// <Link to={`/editVideoGame/${detailVideoGame.id}`}>
+                       // <button>Modify...</button>
                         </Link> */}
 
 

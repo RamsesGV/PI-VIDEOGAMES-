@@ -61,26 +61,36 @@ const EditVideoGame = (props) => {
             "Game Gear",
             "Neo Geo"
         ];
-
-    const [errors,] = useState({});// maneja los errores
-    const [values, setValues] = useState({})
-    //useEffect
-    useEffect(() => {
-        dispatch(getGenres())
-        dispatch(getDetailVideoGame(props.match.params.id))
-        setValues({
-            name: detailVideoGame.name,
-            image: detailVideoGame.image,
-            description: detailVideoGame.description,
-            released: new Date().toISOString().split('T')[0],
-            rating: detailVideoGame.rating,
-            platforms: detailVideoGame.platforms,
-            genres: detailVideoGame.genres,
+        const [values,setValues] = useState({
+            name: '',
+    image: '',
+    description: '',
+    released: '',
+    rating: 0,
+    platforms: [],
+    genres: [],
         })
-    }, [dispatch, props.match.params.id, detailVideoGame.length, detailVideoGame.description, detailVideoGame.genres, detailVideoGame.image, detailVideoGame.name, detailVideoGame.platforms, detailVideoGame.rating])
+        const [errors,] = useState({});
 
-    //Estados
-    //Estado con los inputs cargados
+        useEffect(() => {
+            dispatch(getGenres());
+            dispatch(getDetailVideoGame(props.match.params.id));
+          }, [dispatch, props.match.params.id]);
+        
+          useEffect(() => {
+            if (detailVideoGame) {
+              setValues({
+                name: detailVideoGame.name || '',
+                image: detailVideoGame.image || '',
+                description: detailVideoGame.description || '',
+                released: detailVideoGame.released || '',
+                rating: detailVideoGame.rating || 0,
+                platforms: detailVideoGame.platforms || [],
+                genres: detailVideoGame.genres || [],
+              });
+            }
+          }, [detailVideoGame]);
+        
 
     //HANDLES-------------------------
     const handleChangePlatform = (e) => {

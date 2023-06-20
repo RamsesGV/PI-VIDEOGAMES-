@@ -11,6 +11,7 @@ import {
     GET_VIDEOGAMES_BY_NAME,
     DELETED_GAME,
     DELETE_STATES,
+   // MODIFY_GAME
 } from './types.js'
 
 
@@ -161,5 +162,14 @@ export const deleteStates = () => {
 }
 
 export const searchGameByPlatforms = () => { }
-export const modifyVideoGame = (payload) => { }
+
+//export const modifyVideoGame = (id,payload) => {
+   // return {
+      //  type: MODIFY_GAME,
+      ///  payload: {
+       /// id,
+       // data: payload,
+       // },
+   // };
+//}
 
