@@ -135,7 +135,7 @@ export const getGenres = (payload) => {
 Estas acciones son acciones síncronas que ordenan los videojuegos alfabéticamente, 
 por clasificación o por género. 
 Cada acción devuelve un objeto con el tipo de acción correspondiente 
-y los datos proporcionados como carga (payload).
+y los datos proporcionados como carga (payload)..
  */
 export const orderAlphabetically = (payload) => {
     return {
