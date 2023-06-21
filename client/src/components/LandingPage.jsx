@@ -1,3 +1,12 @@
+/*
+En resumen, el componente LandingPage muestra una página de inicio 
+simple con un título, un subtítulo y un botón para iniciar la exploración 
+de videojuegos. Al hacer clic en el botón, 
+el usuario será redirigido a la ruta /home. 
+Los estilos CSS se aplican a través de las clases 
+extraídas del archivo LandingPage.module.css.
+ */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles/LandingPage.module.css';
