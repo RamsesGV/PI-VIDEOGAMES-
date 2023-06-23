@@ -8,7 +8,10 @@ a {
 }
 
 
-
+.novgmsg{
+    color:white;
+    font-size: large;
+}
 .containerCard {
     display: flex;
     flex-direction: row;

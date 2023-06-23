@@ -96,6 +96,7 @@ const CreateGame = () => {
     genres: [],
   })
 
+  
   //!------------VALIDACIONES/ERRORS ------------------
   /*
   Esta función se utiliza para realizar validaciones en los valores del formulario 
@@ -139,6 +140,7 @@ const CreateGame = () => {
       ...values,
       [e.target.name]: e.target.value
     });
+    
     /*
     Esto actualiza el estado errors del formulario. 
     Utiliza la función validators para validar los nuevos valores del formulario, 

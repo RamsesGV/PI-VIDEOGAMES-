@@ -54,7 +54,7 @@ const Home = () => {
     en la página actual.
      */
     const [current, setCurrent] = useState([]); //current 15VG
-
+    const [foundGames, setFoundGames] = useState(true)
     useEffect(() => {
         /*
         dispatch(getGenres()) 
@@ -74,8 +74,8 @@ const Home = () => {
         para obtener todos los videojuegos de la API 
         y almacenarlos en el estado global.
          */
-        if (vg.length === 0) {
-            dispatch(getAllVideoGames())
+        if (vg.length  === 0 && foundGames > 0) {
+            dispatch(getAllVideoGames()) 
         }
         /*
         setCurrent se utiliza para establecer los videojuegos actuales 
@@ -87,7 +87,7 @@ const Home = () => {
         setCurrent(
             allVideogames.slice(indexOfFirstVideoGame, indexOfLastVideoGame)
         )
-    }, [allVideogames, indexOfFirstVideoGame, indexOfLastVideoGame, dispatch]
+    }, [allVideogames, indexOfFirstVideoGame, indexOfLastVideoGame, dispatch,foundGames]
     );
     /*
     La función paged se define para actualizar currentPage 
@@ -153,10 +153,15 @@ const Home = () => {
         )
     }
     //mismo procedimiento diferente action 
+    
     const handleGetVideoGamesByOrigin = (e) => {
         e.preventDefault()
-        dispatch(getVideoGamesByOrigin(e.target.value));
+        const origin = e.target.value
+        dispatch(getVideoGamesByOrigin(origin));
         setCurrentPage(1)
+
+        const gamesByOrigin = allVideogames.filter((game) => game.origin === origin);
+        setFoundGames(gamesByOrigin.length > 0);
         // setCurrent(
         //     getAllVideogames.slice(indexOfFirstVideoGame, indexOfLastVideoGame)
         // )
@@ -177,7 +182,7 @@ const Home = () => {
             ...search,
             [e.target.name]: e.target.value,
         })
-        dispatch(getVideogameByName(search.name))
+        dispatch(getVideogameByName(e.target.value))
         setCurrentPage(1)
         // setCurrent(
         //     getAllVideogames.slice(indexOfFirstVideoGame, indexOfLastVideoGame)
@@ -197,6 +202,7 @@ const Home = () => {
         console.log("Before clearing states:", allVideogames, currentPage);
         dispatch(deleteStates())
         console.log("After clearing states:", allVideogames, currentPage);
+        window.location.reload()
     }
 
     // sytles
@@ -256,6 +262,7 @@ const Home = () => {
                 </div>
                 <div style={{ marginTop: "80" }}>
                     <div className={containerCard}>
+                        
 
                         {current.length > 0 ? current.map(el => {
                             return (
@@ -272,7 +279,12 @@ const Home = () => {
                             )
                         }) :
                             <div className={containerLoading}>
-                                <Loading />
+                                {foundGames ? 
+                                (<Loading/>)
+                                : (
+                                    <p className="novgmsg">No se econtraron juegos con ese origen</p>
+                                )
+                            }
                             </div>
                         }
                     </div>

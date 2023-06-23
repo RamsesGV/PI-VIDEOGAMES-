@@ -47,35 +47,34 @@ id, name, description, released, rating, img (imagen de fondo), platforms (plata
 Finalmente, se devuelve un arreglo de juegos estructurados.
  */
 
-const getGamesOnApi = async () => {
+getGamesOnApi = async () => {
 
 
-let response = await axios.get(
-    `https://api.rawg.io/api/games?key=975089cbd48846a78452db953dd911fd`,
-)
-
-
-let result = [];
-for (let i = 0; i < 5; i++) {
-    result = [...result, ...response.data.results];
-    response = await axios.get(response.data.next);
-}
-
-const data = result.map((el) => {
-    return {
-    id: el.id,
-    name: el.name,
-    description: el.description,
-    released: el.released,
-    rating: el.rating,
-    img: el.background_image,
-    platforms: el.platforms.map((p) => p.platform.name),
-    genres: el.genres.map((g) => g.name),
+    let response = await axios.get(
+        `https://api.rawg.io/api/games?key=975089cbd48846a78452db953dd911fd`,
+    )
+    
+    
+    let result = [];
+    for (let i = 0; i < 10; i++) {
+        result = [...result, ...response.data.results];
+        response = await axios.get(response.data.next);
     }
-})
-return data;
-}
-
+    
+    const data = result.map((el) => {
+        return {
+        id: el.id,
+        name: el.name,
+        description: el.description,
+        released: el.released,
+        rating: el.rating,
+        img: el.background_image,
+        platforms: el.platforms.map((p) => p.platform.name),
+        genres: el.genres.map((g) => g.name),
+        }
+    })
+    return data;
+    }
 //!---------------------------------------------------------------------------------------------------
 /*
 La función getAllGames obtiene todos los juegos tanto de la API como de la base de datos. 
@@ -114,8 +113,8 @@ De lo contrario, se devuelve un arreglo de juegos estructurados.
 */ 
 
 const getGameByName = async (name) => {
-let apiGames = await axios.get(
-    `https://api.rawg.io/api/games?key=975089cbd48846a78452db953dd911fd&search=${name}`,
+let apiGames = await  axios.get(
+`https://api.rawg.io/api/games?key=975089cbd48846a78452db953dd911fd&search=${name}`,
 )
 const dbGames = await getGamesOnDb();
 let allGames = [
@@ -124,7 +123,7 @@ let allGames = [
 ];
 
 let gamesNames = allGames.filter((el) =>
-    el.name.toLowerCase().includes(name.toLowerCase()),
+    el.name.toLowerCase() === name.toLowerCase(),
 )
 
 const data = gamesNames.map((el) => {
