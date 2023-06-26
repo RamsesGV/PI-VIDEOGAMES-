@@ -5,6 +5,7 @@
 const { Router } = require('express');
 const genresRouter = require('../routes/genresRouter/genres.js')
 const gamesApi = require('../routes/gamesRouter/games.js')
+const publishersApi = require('../routes/publisherRouter/publisher.js')
 
 
 
@@ -16,6 +17,7 @@ const router = Router();
 
 router.use('/genres', genresRouter)
 router.use('/videogames', gamesApi)
+router.use('/publishers', publishersApi)
 
 module.exports = router;
 
